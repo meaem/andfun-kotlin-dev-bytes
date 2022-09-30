@@ -29,6 +29,7 @@ import kotlinx.coroutines.withContext
 
 // TODO (01) Create a VideosRepository class that takes a VideosDatabase argument.
 class VideosRepository(private val database: VideosDatabase) {
+    // TODO (03) Define a Transformations.map  to convert the DatabaseVideo list to a list of Video.
     val videos: LiveData<List<Video>> = Transformations.map(database.videoDao.getVideos()) {
         it.asDomainModel()
     }
@@ -42,6 +43,5 @@ class VideosRepository(private val database: VideosDatabase) {
             database.videoDao.insertAll(*playlist.asDatabaseModel())
         }
     }
-// TODO (03) Define a Transformations.map  to convert the DatabaseVideo list to a list of Video.
 }
 
